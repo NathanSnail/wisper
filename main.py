@@ -12,6 +12,7 @@ mods = {"chain spell": -30,
 
 inv = {v: k for k,v in mods.items()}
 
+all = [x for k,x in mods.items()]
 negative = [x for k,x in mods.items() if x < 0]
 positive = [x for k,x in mods.items() if x > 0]
 
@@ -27,10 +28,11 @@ while True:
 	e = frontier[0]
 	frontier.pop(0)
 	e[1].sort()
-	tstr = f"{len(e[1])} total: {', '.join([inv[x] for x in e[1]])}"
-	if tstr in searched:
+	key = tuple(e[1].count(x) for x in all)
+	# print(e[1],key)
+	if key in searched:
 		continue
-	searched.add(tstr)
+	searched.add(key)
 	if e[0] > target:
 		for elem in negative:
 			n = copy.copy(e[1])
@@ -44,9 +46,10 @@ while True:
 	else:
 		e[1].sort()
 		done += 1
-		sols.append(tstr)
+		sols.append(key)
 		if done >= count:
 			break
 
 sols.reverse()
+sols = [", ".join([f"{x} * {inv[all[k]]}" for k,x in enumerate(sol) if x > 0]) for sol in sols]
 print("\n".join(sols))
