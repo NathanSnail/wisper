@@ -60,7 +60,6 @@ while True:
 		if done >= count:
 			break
 
-print(sols)
 sols.sort(key=lambda x: -div_eval(x))
 sols = [
 	", ".join([f"{x} * {inv[all[k]]}" for k, x in enumerate(sol) if x > 0])
