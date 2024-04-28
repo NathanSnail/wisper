@@ -81,9 +81,11 @@ while True:
 			break
 
 sols.sort(key=lambda x: -div_eval(x))
+print(sols)
 sols = [
 	", ".join([f"{x} * {inv[all[k]]}" for k, x in enumerate(sol) if x > 0])
-	+ f" (estimated {div_eval(sol)} spells)"
+	+ f" (estimated {div_eval(sol)} spells) for "
+	+ f"{sum([x * all[k] for k, x in enumerate(sol)])}f"
 	for sol in sols
 ]
 print("\n".join(sols))
