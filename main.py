@@ -15,7 +15,7 @@ mods = {
 
 
 def div_eval(vals):
-	t = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 3, 7: 3, 8: 3, 9: 3, 10: 3, 11: 2}
+	t = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 3, 7: 3, 8: 3, 9: 3, 10: 3, 11: 2, 12: 3}
 	score = sum([t[x] if x in t.keys() else math.ceil(x / 3) for x in vals])
 	return score
 
@@ -81,7 +81,6 @@ while True:
 			break
 
 sols.sort(key=lambda x: -div_eval(x))
-print(sols)
 sols = [
 	", ".join([f"{x} * {inv[all[k]]}" for k, x in enumerate(sol) if x > 0])
 	+ f" (estimated {div_eval(sol)} spells) for "
