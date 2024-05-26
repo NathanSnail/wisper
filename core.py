@@ -52,12 +52,12 @@ all = [x for k, x in mods.items()]
 negative = [x for k, x in mods.items() if x < 0]
 positive = [x for k, x in mods.items() if x > 0]
 
+
 def compute(lower, upper, count):
 	frontier = [(0, [])]
 	sols = []
 	searched = set()
 	done = 0
-	target_ranged = upper != lower
 
 	def new_case(value, stack, elem):
 		n = [x for x in stack] + [elem]
@@ -80,13 +80,13 @@ def compute(lower, upper, count):
 			for elem in positive:
 				new_case(value, stack, elem)
 		else:
-			if target_ranged:
-				if upper != e[0]:
-					for elem in positive:
-						new_case(value, stack, elem)
-				if lower != e[0]:
-					for elem in negative:
-						new_case(value, stack, elem)
+			# if target_ranged:
+			# 	if upper != e[0]:
+			for elem in positive:
+				new_case(value, stack, elem)
+			# 	if lower != e[0]:
+			for elem in negative:
+				new_case(value, stack, elem)
 			done += 1
 			sols.append(key)
 			if done >= count:
@@ -106,7 +106,7 @@ def prettify(sols):
 	print("\n".join(sols))
 
 
-#prettify(compute(lower, upper, count))
+# prettify(compute(lower, upper, count))
 
 
 def time_eval(n):
@@ -117,4 +117,3 @@ def time_eval(n):
 			print(i)
 		compute(base - 7, base + 7, 100)
 	print(time.time() - start)
-
