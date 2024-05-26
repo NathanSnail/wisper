@@ -41,6 +41,8 @@ def div_eval(vals):
 		23: 5,
 		24: 5,
 		25: 5,
+		31: 4,
+		41: 4,
 	}
 	score = sum([t[x] if x in t.keys() else math.ceil(x / 5) for x in vals])
 	return score
