@@ -1,4 +1,4 @@
-from core import prettify, compute, time_eval
+from core import compute, prettify, time_eval
 
 target = input("target: ")
 if target.find("."):
@@ -15,5 +15,5 @@ if count == "":
 	count = "100"
 count = int(count)
 
-#time_eval(10000)
+# time_eval(10000)
 prettify(compute(lower, upper, count))
